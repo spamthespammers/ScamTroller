@@ -1,0 +1,34 @@
+﻿
+ntity Logan Jazmin
+Posting prospect
+OK
+{"success":true,"prospectId":"0617A77DFD","data":{"action":"prospect","firstName":"Logan","lastName":"Jazmin","email":"logan.jazmin@gmail.com","phone":"4122145572","shippingCountry":"US","shippingZip":"09605-0883","shippingAddress1":"71686 Greenfelder Summit Apt. 895","shippingAddress2":"","shippingCity":"Kulasville","shippingState":"VA"},"redirect":"checkout.php?affId=2&prospect_id=0617A77DFD"}
+Pause before downsell
+Posting downsell
+OK
+{"success":false,"errors":{"crmError":"Transaction Declined: 63  -  TRANSACTION NOT ALLOWED"}}
+Sleeping
+---------------------------------------------------------------------------------------------------------------------------------
+Iteration 160 out of 2000
+Using fake identity Maleki Anamary
+Posting prospect
+OK
+{"success":true,"prospectId":"7CF554E07E","data":{"action":"prospect","firstName":"Maleki","lastName":"Anamary","email":"maleki.anamary@gmail.com","phone":"7079621579","shippingCountry":"US","shippingZip":"49538","shippingAddress1":"6209 Wuckert Ridge Apt. 035","shippingAddress2":"","shippingCity":"East Andres","shippingState":"MI"},"redirect":"checkout.php?affId=2&prospect_id=7CF554E07E"}
+Pause before downsell
+Posting downsell
+OK
+{"success":false,"errors":{"crmError":"Transaction Declined: 63  -  TRANSACTION NOT ALLOWED"}}
+Sleeping
+---------------------------------------------------------------------------------------------------------------------------------
+Iteration 161 out of 2000
+Using fake identity Jerry Koli
+Posting prospect
+OK
+{"success":true,"prospectId":"E4AEEE5AEE","data":{"action":"prospect","firstName":"Jerry","lastName":"Koli","email":"jerry.koli@outlook.com","phone":"7247434113","shippingCountry":"US","shippingZip":"81059","shippingAddress1":"37192 Mayer Knolls","shippingAddress2":"","shippingCity":"Vitaton","shippingState":"IN"},"redirect":"checkout.php?affId=2&prospect_id=E4AEEE5AEE"}
+Pause before downsell
+Posting downsell
+OK
+{"success":false,"errors":{"crmError":"Transaction Declined: 63  -  TRANSACTION NOT ALLOWED"}}
+Sleeping
+---------------------------------------------------------------------------------------------------------------------------------
+Iteration 162 out of 2000
