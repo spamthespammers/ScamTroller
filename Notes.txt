@@ -1,14 +1,20 @@
 ﻿Scam Sites
 -------------------------
-https://bestgadgetsdailynow.com/
-https://www.hottestdealsfortechandgadgets.com/
-https://soundbuds.sparknows.com/
-https://www.supremetacticgadgets.com/
-https://www.smartbotsweeper.com/
-https://surprisegifttoday.com/promo/ipad-air/v1/?affId=2&c1=&c2=auaoridxwgwj&c3=&c4=&c5=&click_id=4fb4f1d9f121426f98879e7daae01919
+https://bestgadgetsdailynow.com/afoffv2/
+https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p/
+https://www.supremetacticgadgets.com/p/vb
+https://www.smartbotsweeper.com/limitedoffer/98321253
 
-POST
-https://surprisegifttoday.com/promo/ipad-air/v1/ajax.php/prospect
+https://surprisegifttoday.com/promo/ipad-air/v1
 
 
-+1 5160566566
+
+---------------------------------
+Next Targetgit 
+
+https://www.scamdoc.com/view/1030307
+
+api/orders/multi
+Multi
+https://www.supremetacticgadgets.com/api/orders/multi
+{"first_name":"Patrick","last_name":"Schwayze","email":"pschwayze69.pizza@gmail.com","phone":"5168423322","country":"US","address1":"41088 Koch Stream","address2":"","city":"Bettieburgh","state":"WV","zip":"50258","billship_same":true,"cc_type":"visa","credit_card_number":"4444444444444444","card_month":"01","card_year":"25","cvv":"333","order":{"1":{"warranty":false}},"upsells":[{"step":2,"dynamic_product_price":0}],"dynamic_product_price":7.97,"affid":"undefined","provider":"undefined","cpa":"","offer_id":"237"}

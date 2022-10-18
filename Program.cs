@@ -13,7 +13,9 @@ CreditCardGenerator.Cook(numIdentities);
 
 string target = "https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p";
 
-target = "";
+//target = "https://www.supremetacticgadgets.com/p/vb";
+
+target = "https://www.smartbotsweeper.com/limitedoffer/98321253";
 
 TrollClient trollClient = new TrollClient(new TrollClientArgs(target));
 

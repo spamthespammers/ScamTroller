@@ -39,8 +39,8 @@ namespace ScamTroller.Models
                 Country = "US",
                 PostCode = person.Address.ZipCode,
                 Email = EmailGenerator.RandomEmail(firstName, lastName),
-                ExpirationMonth = RandomUtils.RandomNumber(max: 12).ToString(),
-                ExpirationYear = RandomUtils.RandomNumber(min: 23, max:27).ToString(),
+                ExpirationMonth = creditCard.ExpMonth,
+                ExpirationYear = creditCard.ExpYear,
                 CreditCardNumber = creditCard.Number,
                 CreditCardCVC = creditCard.CVV,
                 Phone = person.Phone

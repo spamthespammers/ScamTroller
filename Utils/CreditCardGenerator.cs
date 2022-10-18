@@ -47,7 +47,7 @@ namespace ScamTroller.Utils
         public static (string Number, string ExpMonth, string ExpYear, string CVV) GenerateCreditCard()
         {
             string creditCardNumber = ValidNumbers.SelectRandomUnused(UsedValidNumbers);
-            return (creditCardNumber, Random.Next(13).ToString("00"), Random.Next(23, 27).ToString(), RandomUtils.RandomDigits(3));
+            return (creditCardNumber, $"{Random.Next(0, 13):00}", Random.Next(23, 27).ToString(), RandomUtils.RandomDigits(3));
         }
     }
 }
