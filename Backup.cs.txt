@@ -1,0 +1,133 @@
+﻿
+using System.Diagnostics;
+using Newtonsoft.Json;
+using ScamTroller;
+using ScamTroller.Clients;
+using ScamTroller.Utils;
+
+
+
+PrePostSEOClient identityClient = new PrePostSEOClient();
+var identity = await identityClient.GetFakeIdentity();
+
+Console.WriteLine(JsonConvert.SerializeObject(identity, Formatting.Indented));
+
+
+NameGenerator nameGenerator = new NameGenerator();
+
+string firstName = nameGenerator.GetFirstName();
+string lastName = nameGenerator.GetLastName();
+
+string guid = Guid.NewGuid().ToString().Replace("-", string.Empty).ToLowerInvariant();
+//https://www.premiumdeals-now.com/jt-4rr/fall-promotion/lightbulb-cam/?AFFID=57
+Dictionary<string, string> data = new Dictionary<string, string>
+{
+    { "action", "prospect" },
+    { "firstName", firstName },
+    { "lastName",lastName },
+    { "shippingCountry", "US" },
+    { "shippingZip", identity.PostCode },
+    { "shippingState", identity.State },
+    { "shippingCity", identity.City },
+    { "shippingAddress1", identity.StreetAddress },
+    { "shippingAddress2", string.Empty },
+    { "email", EmailGenerator.RandomEmail(firstName, lastName) },
+    { "phone", PhoneGenerator.RandomNumber() },
+    //https://surprisegifttoday.com/promo/ipad-air/v1/?affId=2&c1=&c2=auaoridxwgwj&c3=&c4=&c5=&click_id=4fb4f1d9f121426f98879e7daae01919
+    { "user_is_at", "https://surprisegifttoday.com/promo/ipad-air/v1/?affId=2&c1" },
+    //{ "cbtoken", guid }
+
+};
+//https://surprisegifttoday.com/promo/ipad-air/v1/?affId=2&c1=&c2=auaoridxwgwj&c3=&c4=&c5=&click_id=4fb4f1d9f121426f98879e7daae01919
+
+//click_id (4fb4f1d9f121426f98879e7daae01919)
+//affId (2)
+Console.WriteLine();
+
+var form = new FormUrlEncodedContent(data.ToList());
+string dbg = form.ReadAsStringAsync().Result;
+Console.WriteLine(dbg);
+Console.WriteLine();
+
+HttpRequestMessage request = new HttpRequestMessage
+{
+    Content = new FormUrlEncodedContent(data)
+};
+
+HttpClientHandler clientHandler = new HttpClientHandler();
+clientHandler.CookieContainer = new System.Net.CookieContainer();
+clientHandler.UseCookies = true;
+HttpClient client = new HttpClient(clientHandler);
+
+
+HttpResponseMessage response = null;
+
+
+//https://surprisegifttoday.com/promo/ipad-air/v1/?affId=2&c1=&c2=auaoridxwgwj&c3=&c4=&c5=&click_id=4fb4f1d9f121426f98879e7daae01919
+
+
+response = await client.GetAsync($"https://surprisegifttoday.com/promo/ipad-air/v1/?affId=2&c1=&c2=&c3=&c4=&c5=&click_id={guid}");
+
+Console.WriteLine("--Doc Get Status--");
+Console.WriteLine(response.StatusCode);
+Console.WriteLine();
+
+response = await client.PostAsync("https://surprisegifttoday.com/promo/ipad-air/v1/ajax.php/prospect", new FormUrlEncodedContent(data));
+
+
+string responseText = await response.Content.ReadAsStringAsync();
+
+Console.WriteLine($"--Prospect Post--");
+Console.WriteLine(response.StatusCode);
+Console.WriteLine(responseText);
+
+//https://www.premiumdeals-now.com/jt-4rr/fall-promotion/lightbulb-cam/?AFFID=57
+
+Console.WriteLine("<<Fun Time>>");
+
+Console.WriteLine("--Get Premium Deals Doc--");
+response = await client.GetAsync("https://www.premiumdeals-now.com/jt-4rr/fall-promotion/lightbulb-cam/?AFFID=57");
+
+Console.WriteLine();
+
+Console.WriteLine("--Post Premium Deals Crap--");
+var downsell = new Dictionary<string, string>
+{
+    { "firstName", firstName },
+    { "lastName", lastName },
+    { "email", EmailGenerator.RandomEmail(firstName, lastName) },
+    { "phone", PhoneGenerator.RandomNumber() },
+    { "shippingCountry", "US" },
+    { "shippingZip", identity.PostCode },
+    { "shippingAddress1", identity.StreetAddress },
+    { "shippingAddress2", string.Empty },
+    { "shippingCity", identity.City },
+    { "shippingState", identity.StateCode },
+    { "billing_checkbox", "yes" },
+    { "billingSameAsShipping", "yes" },
+    { "creditCardType", "visa" },
+    { "creditCardNumber", identity.Credit.Number },
+    { "expmonth", identity.Credit.ExpirationDate.Substring(0, 2) },
+    { "expyear", identity.Credit.ExpirationDate.Substring(3, 2) },
+    { "CVV", RandomUtils.RandomDigits(3) },
+    //{ "user_is_at", "https://www.premiumdeals-now.com/jt-4rr/fall-promotion/lightbulb-cam/?AFFID=57" }
+};
+response = await client.PostAsync("https://www.premiumdeals-now.com/jt-4rr/fall-promotion/lightbulb-cam/ajax.php/downsell", new FormUrlEncodedContent(downsell));
+
+Console.WriteLine(response.StatusCode);
+Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+
+Console.WriteLine();
+
+Console.WriteLine("--HottestDealsForTechAndGadgets--");
+
+//
+//https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p/ajax.php/downsell
+response = await client.GetAsync("https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p/checkout.php?affid=9");
+
+//
+
+response = await client.PostAsync("https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p/ajax.php/downsell", new FormUrlEncodedContent(downsell));
+Console.WriteLine(response.StatusCode);
+Console.WriteLine(await response.Content.ReadAsStringAsync());

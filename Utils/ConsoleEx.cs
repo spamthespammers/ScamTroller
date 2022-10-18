@@ -4,10 +4,12 @@ namespace ScamTroller.Utils
     public static class ConsoleEx
     {
         static string LogFile;
+
         static ConsoleEx()
         {
             LogFile = $"scamtroller-{DateTime.Now:yyyy-MM-dd--HH-mm}.txt";
         }
+
         public static void WriteLine(object value, ConsoleColor? foreground = null, ConsoleColor? background = null)
         {
             Console.ForegroundColor = foreground ?? Console.ForegroundColor;

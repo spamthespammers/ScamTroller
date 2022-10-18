@@ -9,6 +9,7 @@ namespace ScamTroller.Utils
 
         static Random Random = new Random();
 
+        public static int RandomNumber(int min = 0, int max = 10) => Random.Next(min, max + 1);
 
         public static string RandomDigits(int length)
         {
@@ -23,7 +24,7 @@ namespace ScamTroller.Utils
         public static string RandomLettersUpper(int length) => RandomLettersInRange('A', 'Z', length);
         public static string RandomLettersLower(int length) => RandomLettersInRange('a', 'z', length);
 
-
+        public static bool RandomBool() => Random.Next(2) == 1;
 
         private static string RandomLettersInRange(char start, char end, int length)
         {

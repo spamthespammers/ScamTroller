@@ -13,6 +13,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="Models\Address\" />
     <None Remove="Clients\" />
+    <None Remove="Bogus" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Backup.cs.txt" />
@@ -40,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Bogus" Version="34.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Backup.cs" />

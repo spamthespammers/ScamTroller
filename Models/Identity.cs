@@ -21,6 +21,33 @@ namespace ScamTroller.Models
         public string ExpirationYear;
 
 
+        public static Identity Fabricate()
+        {
+            string firstName = NameGenerator.GetFirstNameRepeating();
+            string lastName = NameGenerator.GetLastNameRepeating();
+            var creditCard = CreditCardGenerator.GenerateCreditCard();
+
+            Bogus.Person person = new Bogus.Person();
+
+            return new Identity
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                StreetAddress = person.Address.Street,
+                City = person.Address.City,
+                State = AddressUtils.GetStateCode(person.Address.State), //person.Address.State,
+                Country = "US",
+                PostCode = person.Address.ZipCode,
+                Email = EmailGenerator.RandomEmail(firstName, lastName),
+                ExpirationMonth = RandomUtils.RandomNumber(max: 12).ToString(),
+                ExpirationYear = RandomUtils.RandomNumber(min: 23, max:27).ToString(),
+                CreditCardNumber = creditCard.Number,
+                CreditCardCVC = creditCard.CVV,
+                Phone = person.Phone
+               
+            };
+        }
+
         public Identity()
         {
         }

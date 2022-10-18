@@ -1,29 +1,34 @@
 ﻿
-
 using ScamTroller.Clients;
 using ScamTroller.Models;
 using ScamTroller.Utils;
 
-PrePostSEOClient identityClient = new PrePostSEOClient();
+
+
+int numIdentities = 10000;
+CreditCardGenerator.Cook(numIdentities);
+
+
 //https://surprisegifttoday.com/promo/ipad-air/v1
-TrollClient trollClient = new TrollClient(new TrollClientArgs("https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p"));
+
+string target = "https://www.hottestdealsfortechandgadgets.com/vac-2sv2-2p";
+
+target = "";
+
+TrollClient trollClient = new TrollClient(new TrollClientArgs(target));
 
 ConsoleEx.WriteLine($"Targeting {trollClient.BaseUrl}", ConsoleColor.Red);
 
-//var delay = TimeSpan.FromMilliseconds(10);
 
-int count = 2000;
-for(int i = 0; i < count; i++)
+for(int i = 0; i < numIdentities; i++)
 {
 
-    ConsoleEx.WriteLine($"Iteration {(i + 1)} out of {count}");
+    ConsoleEx.WriteLine($"Iteration {(i + 1)} out of {numIdentities}");
 
-    var fakeIdentity = await identityClient.GetFakeIdentity();
-    var identity = new Identity(fakeIdentity);
+    var identity = Identity.Fabricate();
 
-    ConsoleEx.WriteLine($"Using fake identity {identity.FirstName} {identity.LastName}");
+    ConsoleEx.WriteLine($"Using fake identity {identity.FirstName} {identity.LastName} ({identity.CreditCardNumber})");
 
-    //Console.WriteLine(JsonConvert.SerializeObject(identity, Formatting.Indented));
 
     ConsoleEx.WriteLine("Posting prospect");
     var postProspectResponse = await trollClient.PostProspect(identity);
@@ -31,7 +36,6 @@ for(int i = 0; i < count; i++)
     Console.WriteLine(await postProspectResponse.Content.ReadAsStringAsync());
 
     ConsoleEx.WriteLine("Pause before downsell");
-    //Thread.Sleep(25);
 
     ConsoleEx.WriteLine("Posting downsell");
     var postDownsellResponse = await trollClient.PostDownsell(identity);
@@ -39,8 +43,6 @@ for(int i = 0; i < count; i++)
     ConsoleEx.WriteLine(await postDownsellResponse.Content.ReadAsStringAsync());
 
 
-    //Console.WriteLine("Sleeping");
-    //Thread.Sleep((int)delay.TotalMilliseconds);
     ConsoleEx.WriteLine(new String('-', Console.WindowWidth));
 }
 
